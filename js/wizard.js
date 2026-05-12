@@ -141,8 +141,46 @@ const Wizard = (() => {
 
   /* --- Other Button Handler --- */
   function handleOther() {
-    showToast('🚧 Próximamente...');
-    Tracking.send('🔘 Clic en Otro');
+    const overlay = $('#floating-menu-overlay');
+    if (overlay) overlay.classList.add('active');
+    Tracking.send('🔘 Clic en Otros Servicios');
+  }
+
+  function closeOther(e) {
+    if (e && e.target !== e.currentTarget && !e.target.classList.contains('close-floating')) return;
+    const overlay = $('#floating-menu-overlay');
+    if (overlay) overlay.classList.remove('active');
+  }
+
+  function handleFloating(type, label) {
+    showToast(`${label} — Próximamente`);
+    Tracking.send(`🔘 Clic en Flotante: ${label}`);
+  }
+
+  /* --- IA / Meme Handler --- */
+  const MEMES = [
+    'img/memes/Sarah.jpg',
+    'img/memes/arnold.jpg',
+    'img/memes/meme-ia-laburar-300x300.webp',
+    'img/memes/skynet.jpeg',
+    'img/memes/verificacion.webp'
+  ];
+
+  function handleIA() {
+    const overlay = $('#meme-overlay');
+    const img = $('#meme-img');
+    if (overlay && img) {
+      const randomMeme = MEMES[Math.floor(Math.random() * MEMES.length)];
+      img.src = randomMeme;
+      overlay.classList.add('active');
+    }
+    Tracking.send('🤖 Clic en IA (Meme)');
+  }
+
+  function closeMeme(e) {
+    if (e && e.target !== e.currentTarget && !e.target.classList.contains('close-floating')) return;
+    const overlay = $('#meme-overlay');
+    if (overlay) overlay.classList.remove('active');
   }
 
   /* --- Contact Handlers --- */
@@ -191,6 +229,10 @@ const Wizard = (() => {
     showToast,
     toggleFaq,
     handleOther,
+    closeOther,
+    handleFloating,
+    handleIA,
+    closeMeme,
     handleWhatsApp,
     handleChat,
     handlePayment,

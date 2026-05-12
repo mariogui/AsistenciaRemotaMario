@@ -135,7 +135,7 @@ const Tracking = (() => {
     try {
       _updateTimestamp();
       await fetch(
-        `https://asis-remota-tracking.marioguinazutech.workers.dev/track`,
+        `https://asis-remota-tracking.mariogui.workers.dev/track`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

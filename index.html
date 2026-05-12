@@ -78,7 +78,11 @@
             </button>
             <button id="btn-other" class="btn btn-secondary" onclick="Wizard.handleOther()">
               <span class="btn-icon">📋</span>
-              Otro
+              Otros Servicios
+            </button>
+            <button id="btn-ia" class="btn btn-secondary" onclick="Wizard.handleIA()">
+              <span class="btn-icon">🤖</span>
+              IA
             </button>
           </div>
         </div>
@@ -375,6 +379,30 @@
 
   <!-- Toast Notification -->
   <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+  <!-- Floating Menu Overlay -->
+  <div id="floating-menu-overlay" class="floating-menu-overlay" onclick="Wizard.closeOther(event)">
+    <button class="close-floating" onclick="Wizard.closeOther()" aria-label="Cerrar menú">✕</button>
+    <div class="floating-menu">
+      <button class="floating-btn" onclick="Wizard.handleFloating('security', '🛡️ Cámaras de Seguridad')">
+        <span class="floating-btn-icon">🛡️</span>
+        Cámaras de Seguridad
+      </button>
+      <button class="floating-btn" onclick="Wizard.handleFloating('other_soon', '✨ Otros (Próximamente...)')">
+        <span class="floating-btn-icon">✨</span>
+        Otros (Próximamente...)
+      </button>
+    </div>
+  </div>
+
+  <!-- Meme Overlay -->
+  <div id="meme-overlay" class="floating-menu-overlay" onclick="Wizard.closeMeme(event)">
+    <button class="close-floating" onclick="Wizard.closeMeme()" aria-label="Cerrar meme">✕</button>
+    <div class="meme-container">
+      <img id="meme-img" src="" alt="Meme IA" class="meme-image">
+      <p class="meme-caption">La IA está pensando... o no.</p>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="js/config.js"></script>
