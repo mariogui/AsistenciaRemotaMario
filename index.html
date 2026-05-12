@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mario — Tu Asistente Informático | Asistencia Remota</title>
+  <meta name="description"
+    content="Conectate con Mario, tu asistente informático. Descargá el programa de acceso remoto y recibí ayuda al instante.">
+  <meta name="theme-color" content="#0F0F1A">
+  <meta property="og:title" content="Mario — Tu Asistente Informático">
+  <meta property="og:description" content="Asistencia remota fácil y segura. Conectate en minutos.">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- ========== WELCOME OVERLAY ========== -->
+  <div class="welcome-overlay" role="status" aria-live="polite" aria-label="Pantalla de bienvenida">
+    <div style="text-align:center">
+      <span class="welcome-text">Hola 👋</span>
+      <p class="welcome-subtitle">Mario, tu asistente informático</p>
+    </div>
+  </div>
+
+  <!-- ========== MAIN APP ========== -->
+  <div class="app-container">
+
+    <!-- Brand Header -->
+    <header class="brand-header">
+      <div class="brand-logo">🖥️ Mario</div>
+      <p class="brand-tagline">Tu asistente informático</p>
+    </header>
+
+    <!-- Progress Bar -->
+    <nav class="progress-bar-container" aria-label="Progreso del asistente">
+      <div class="progress-steps">
+        <div class="progress-step">
+          <div class="progress-dot active" aria-label="Paso 1">1</div>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step">
+          <div class="progress-dot" aria-label="Paso 2">2</div>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step">
+          <div class="progress-dot" aria-label="Paso 3">3</div>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step">
+          <div class="progress-dot" aria-label="Paso 4">4</div>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step">
+          <div class="progress-dot" aria-label="Paso 5">5</div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ========== WIZARD STEPS ========== -->
+    <main class="wizard-viewport">
+
+      <!-- STEP 1: Service Selection -->
+      <section id="step-1" class="wizard-step" role="region" aria-label="Paso 1: Selección de servicio">
+        <div class="glass-card">
+          <div class="step-header">
+            <span class="step-icon">🛠️</span>
+            <h1 class="step-title" tabindex="-1">¿En qué te puedo ayudar?</h1>
+            <p class="step-description">Elegí una opción para comenzar</p>
+          </div>
+
+          <div class="btn-group">
+            <button id="btn-remote" class="btn btn-primary"
+              onclick="Wizard.goTo(2, '🖥️ Seleccionó Asistencia Remota')">
+              <span class="btn-icon">🖥️</span>
+              Asistencia Remota
+            </button>
+            <button id="btn-other" class="btn btn-secondary" onclick="Wizard.handleOther()">
+              <span class="btn-icon">📋</span>
+              Otro
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 2: Program Selection -->
+      <section id="step-2" class="wizard-step" role="region" aria-label="Paso 2: Elegir programa">
+        <button class="back-btn" onclick="Wizard.goBack()" aria-label="Volver al paso anterior">
+          ← Volver
+        </button>
+        <div class="glass-card">
+          <div class="step-header">
+            <span class="step-icon">📥</span>
+            <h2 class="step-title" tabindex="-1">Descargá el programa</h2>
+            <p class="step-description">Elegí una de estas opciones para conectarnos.</p>
+          </div>
+
+          <div class="download-cards">
+            <!-- RustDesk Card -->
+            <button id="btn-rustdesk" class="download-card" onclick="Wizard.selectProgram('rustdesk')"
+              aria-label="Seleccionar RustDesk">
+              <span class="download-card-icon">
+                <img src="img/rustdesk-logo.png" alt="RustDesk Logo" class="brand-card-img rounded-img">
+              </span>
+              <span class="download-card-name">RustDesk</span>
+              <span class="download-card-desc">Código abierto y seguro</span>
+            </button>
+
+            <!-- Helpwire Card -->
+            <button id="btn-helpwire" class="download-card helpwire" onclick="Wizard.selectProgram('helpwire')"
+              aria-label="Seleccionar Helpwire">
+              <span class="download-card-icon">
+                <img src="img/helpwire-logo.jpg" alt="Helpwire Logo" class="brand-card-img rounded-img">
+              </span>
+              <span class="download-card-name">Helpwire</span>
+              <span class="download-card-desc">Fácil y sin instalar</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 3: Guide -->
+      <section id="step-3" class="wizard-step" role="region" aria-label="Paso 3: Guía de uso">
+        <button class="back-btn" onclick="Wizard.goBack()" aria-label="Volver al paso anterior">
+          ← Volver
+        </button>
+
+        <!-- RustDesk Guide -->
+        <div id="guide-rustdesk" style="display:none;">
+          <div class="glass-card">
+            <div class="step-header">
+              <span class="step-icon">
+                <img src="img/rustdesk-logo.png" alt="RustDesk Logo" class="brand-card-img rounded-img">
+              </span>
+              <h2 class="step-title" tabindex="-1">Guía de RustDesk</h2>
+              <p class="step-description">Seguí estos pasos para conectarnos</p>
+            </div>
+
+            <button class="btn btn-primary mb-2" id="btn-download-rustdesk" onclick="Wizard.downloadProgram('rustdesk')"
+              style="text-align:center; display:flex; margin-bottom:1.5rem; border:none; width:100%;">
+              <span class="btn-icon">⬇️</span>
+              Descargar RustDesk
+            </button>
+
+            <div class="guide-steps">
+              <div class="guide-step">
+                <div class="guide-step-number">1</div>
+                <div class="guide-step-content">
+                  <h4>Descargá y abrí RustDesk</h4>
+                  <p>Hacé clic en el botón de arriba. Una vez descargado, abrí el archivo.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-number">2</div>
+                <div class="guide-step-content">
+                  <h4>Encontrá tu ID y Contraseña</h4>
+                  <p>Al abrir RustDesk, vas a ver tu <strong>ID</strong> y <strong>Contraseña</strong> en la pantalla
+                    principal. Esos datos me los tenés que pasar.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-number">3</div>
+                <div class="guide-step-content">
+                  <h4>Indicador de Conexión en verde</h4>
+                  <p>El indicador de conexión (que está indicado con una flecha en la imagen debajo) debe estar de color verde.</p>
+                </div>
+              </div>
+              <div class="guide-step">
+                <div class="guide-step-number">4</div>
+                <div class="guide-step-content">
+                  <h4>Compartí los datos conmigo</h4>
+                  <p>Enviame una foto de la pantalla con el ID y contraseña o mandalos por el chat para que pueda conectarme a tu equipo de forma segura.</p>
+                </div>
+              </div>
+            </div>
+
+            <img src="img/rustdesk-guide.png"
+              alt="Guía visual de RustDesk mostrando dónde encontrar el ID y la contraseña" class="guide-image"
+              loading="lazy">
+
+            <div class="btn-group mt-3">
+              <button class="btn btn-success" onclick="Wizard.goTo(4, '✅ Completó guía RustDesk')">
+                <span class="btn-icon">✅</span>
+                Listo, ya tengo los datos
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Helpwire Guide -->
+        <div id="guide-helpwire" style="display:none;">
+          <div class="glass-card">
+            <div class="step-header">
+              <span class="step-icon">
+                <img src="img/helpwire-logo.jpg" alt="Helpwire Logo" class="brand-card-img rounded-img">
+              </span>
+              <h2 class="step-title" tabindex="-1">Guía de Helpwire</h2>
+              <p class="step-description">Seguí estos pasos para conectarnos</p>
+            </div>
+
+            <button class="btn btn-success mb-2" id="btn-download-helpwire" onclick="Wizard.downloadProgram('helpwire')"
+              style="text-align:center; display:flex; margin-bottom:1.5rem; border:none; width:100%;">
+              <span class="btn-icon">⬇️</span>
+              Descargar Helpwire
+            </button>
+
+            <div class="guide-steps">
+              <div class="guide-step helpwire-step">
+                <div class="guide-step-number">1</div>
+                <div class="guide-step-content">
+                  <h4>Link de descarga</h4>
+                  <p>Haz clic en el botón de aquí arriba o abre el link que te envié por el chat.</p>
+                </div>
+              </div>
+              <div class="guide-step helpwire-step">
+                <div class="guide-step-number">2</div>
+                <div class="guide-step-content">
+                  <h4>Descargá y ejecutá el archivo</h4>
+                  <p>Se va a descargar un archivo pequeño. Abrilo haciendo doble clic. No necesita instalación.</p>
+                </div>
+              </div>
+              <div class="guide-step helpwire-step">
+                <div class="guide-step-number">3</div>
+                <div class="guide-step-content">
+                  <h4>Hacé clic en "Conceder Acceso"</h4>
+                  <p>Cuando aparezca la ventana de Helpwire, hacé clic en el botón <strong>"Conceder Acceso"</strong>
+                    para que pueda ver tu pantalla. Puede que esto ocurra 2 veces. (imagen de referencia debajo)</p>
+                </div>
+              </div>
+            </div>
+
+            <img src="img/helpwire-guide.png" alt="Guía visual de Helpwire mostrando el botón Conceder Acceso"
+              class="guide-image" loading="lazy">
+
+            <div class="btn-group mt-3">
+              <button class="btn btn-success" onclick="Wizard.goTo(4, '✅ Completó guía Helpwire')">
+                <span class="btn-icon">✅</span>
+                Listo, concedí acceso
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 4: Contact -->
+      <section id="step-4" class="wizard-step" role="region" aria-label="Paso 4: Contacto">
+        <button class="back-btn" onclick="Wizard.goBack()" aria-label="Volver al paso anterior">
+          ← Volver
+        </button>
+        <div class="glass-card">
+          <div class="step-header">
+            <span class="step-icon">💬</span>
+            <h2 class="step-title" tabindex="-1">¡Seguimos en contacto por el chat!</h2>
+            <p class="step-description">Mientras me conecto, podés escribirme por cualquiera de estos medios</p>
+          </div>
+
+          <div class="contact-icons">
+            <!-- WhatsApp Icon -->
+            <button class="contact-icon-link whatsapp" onclick="Wizard.handleWhatsApp()"
+              aria-label="Contactar por WhatsApp" title="WhatsApp">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+            </button>
+
+            <!-- Generic Chat Icon -->
+            <button class="contact-icon-link chat" onclick="Wizard.handleChat()" aria-label="Contactar por chat"
+              title="Chat">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" />
+                <circle cx="8" cy="10" r="1" />
+                <circle cx="12" cy="10" r="1" />
+                <circle cx="16" cy="10" r="1" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="btn-group mt-3">
+            <button class="btn btn-primary" onclick="Wizard.goTo(5, '➡️ Avanzó a opciones finales')">
+              <span class="btn-icon">➡️</span>
+              Continuar
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 5: Payment & Final -->
+      <section id="step-5" class="wizard-step" role="region" aria-label="Paso 5: Opciones finales">
+        <button class="back-btn" onclick="Wizard.goBack()" aria-label="Volver al paso anterior">
+          ← Volver
+        </button>
+        <div class="glass-card">
+          <div class="step-header">
+            <span class="step-icon">🎉</span>
+            <h2 class="step-title" tabindex="-1">¡Gracias por confiar en Mario!</h2>
+            <p class="step-description">Cuando terminemos, podés ver las opciones de pago o hacer otra consulta</p>
+          </div>
+
+          <div class="btn-group">
+            <button id="btn-payment" class="btn btn-primary" onclick="Wizard.handlePayment()">
+              <span class="btn-icon">💳</span>
+              Opciones de Pago
+            </button>
+            <button id="btn-new-query" class="btn btn-secondary" onclick="Wizard.handleNewQuery()">
+              <span class="btn-icon">🔄</span>
+              Otra Consulta
+            </button>
+          </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq-section mt-3">
+          <div class="glass-card">
+            <h3 class="step-title" style="font-size:1.2rem; margin-bottom:1rem;">Preguntas Frecuentes</h3>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="Wizard.toggleFaq(this)" aria-expanded="false">
+                ¿Es seguro darle acceso a mi computadora?
+                <span class="faq-chevron">▼</span>
+              </button>
+              <div class="faq-answer" role="region">
+                <div class="faq-answer-inner">
+                  Sí. Los programas que usamos (RustDesk y Helpwire) utilizan encriptación de extremo a extremo. Además,
+                  vos podés ver todo lo que hago en tu pantalla y cortar la conexión en cualquier momento.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="Wizard.toggleFaq(this)" aria-expanded="false">
+                ¿Tengo que instalar algo?
+                <span class="faq-chevron">▼</span>
+              </button>
+              <div class="faq-answer" role="region">
+                <div class="faq-answer-inner">
+                  No necesariamente. Tanto RustDesk como Helpwire pueden ejecutarse sin instalación. Solo descargás el
+                  archivo y lo abrís.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="Wizard.toggleFaq(this)" aria-expanded="false">
+                ¿Cuánto cuesta la asistencia?
+                <span class="faq-chevron">▼</span>
+              </button>
+              <div class="faq-answer" role="region">
+                <div class="faq-answer-inner">
+                  El costo depende del tipo de servicio. Una vez que terminemos, te muestro las opciones de pago
+                  disponibles.
+                </div>
+              </div>
+            </div>
+
+            <div class="faq-item">
+              <button class="faq-question" onclick="Wizard.toggleFaq(this)" aria-expanded="false">
+                ¿Funciona en Mac o Linux?
+                <span class="faq-chevron">▼</span>
+              </button>
+              <div class="faq-answer" role="region">
+                <div class="faq-answer-inner">
+                  ¡Sí! RustDesk funciona en Windows, Mac y Linux. Helpwire funciona en Windows y Mac. Descargá la
+                  versión adecuada desde su sitio oficial.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/tracking.js"></script>
+  <script src="js/wizard.js"></script>
+
+</body>
+
+</html>

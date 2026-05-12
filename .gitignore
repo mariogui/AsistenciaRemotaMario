@@ -1,0 +1,20 @@
+# ==========================================
+#  Carpetas internas (no son parte del sitio)
+# ==========================================
+.vscode/
+.agents/
+.gemini/
+worker/
+
+# ==========================================
+#  Sistema operativo
+# ==========================================
+Thumbs.db
+desktop.ini
+*.tmp
+
+# ==========================================
+#  Node.js (si se usa wrangler localmente)
+# ==========================================
+node_modules/
+package-lock.json
