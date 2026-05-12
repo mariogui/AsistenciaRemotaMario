@@ -4,6 +4,7 @@
 .vscode/
 .agents/
 .gemini/
+.agents/rules/
 worker/
 
 # ==========================================
