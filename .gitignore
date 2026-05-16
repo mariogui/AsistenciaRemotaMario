@@ -4,6 +4,7 @@
 .vscode/
 .agents/
 .gemini/
+ideas/
 .agents/rules/
 worker/
 
