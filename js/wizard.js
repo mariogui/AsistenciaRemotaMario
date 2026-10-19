@@ -98,11 +98,11 @@ const Wizard = (() => {
     if (program === 'rustdesk') {
       const ua = navigator.userAgent;
       if (ua.includes('Win')) {
-        url = 'https://github.com/rustdesk/rustdesk/releases/download/1.4.9/rustdesk-1.4.9-x86_64.exe';
+        url = 'https://github.com/rustdesk/rustdesk/releases/download/1.5.0/rustdesk-1.5.0-x86_64.exe';
       } else if (ua.includes('Mac')) {
-        url = 'https://github.com/rustdesk/rustdesk/releases/download/1.4.9/rustdesk-1.4.9-x86_64.dmg';
+        url = 'https://github.com/rustdesk/rustdesk/releases/download/1.5.0/rustdesk-1.5.0-x86_64.dmg';
       } else if (ua.includes('Android')) {
-        url = 'https://github.com/rustdesk/rustdesk/releases/download/1.4.9/rustdesk-1.4.9-universal-signed.apk';
+        url = 'https://github.com/rustdesk/rustdesk/releases/download/1.5.0/rustdesk-1.5.0-universal-signed.apk';
       } else {
         url = 'https://rustdesk.com'; // Fallback a la web oficial
       }
